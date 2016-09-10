@@ -1,0 +1,31 @@
+td {
+    padding: 5px;
+    margin: 0px;
+}
+
+table {
+    border-spacing: 0px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.even {
+    background-color: #eee;
+}
+
+.odd {
+    background-color: #ccc;
+}
+
+th {
+    background-color: #aaa !important;
+}
+
+#wrapper {
+    width: 60%;
+    margin: auto;
+}
+
+.button {
+    text-align: right;
+}
