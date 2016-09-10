@@ -54,4 +54,14 @@ class Database
             return $result;
         }
     }
+
+    /**
+     * @param string $input
+     * @return string
+     */
+    public function escape_string($input) {
+        $output_array = [];
+        preg_match("/^([0-9])+/", $input, $output_array);
+        return $output_array[0];
+    }
 }
