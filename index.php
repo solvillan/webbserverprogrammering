@@ -8,17 +8,19 @@
 
 //Include the database connector
 include "Database.php";
-$db = new Database();
+$db = new Database("localhost", "root", "", "school");
 
+// Check if page is set
 if (isset($_GET['p'])) {
     $p = $_GET['p'];
+    // Load appropriate page
     if ($p == 'menu') {
         include 'menu.php';
     } else if ($p == 'info') {
         include 'info.php';
-    } else {
+    } else { // Failsafe
         include 'start.php';
     }
-} else {
+} else { // load startpage.
     include 'start.php';
 }

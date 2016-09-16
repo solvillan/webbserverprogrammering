@@ -19,9 +19,9 @@ class Database
     /**
      * Database constructor.
      */
-    public function __construct()
+    public function __construct($host, $user, $pass, $db)
     {
-        $this->connection = new mysqli("localhost", "root", "", "School");
+        $this->connection = new mysqli($host, $user, $pass, $db);
 
         if (!$this->connection->set_charset("utf8")) {
             echo "Kunde inte sätta teckentabell.";
@@ -56,6 +56,8 @@ class Database
     }
 
     /**
+     * Escape string to only contain a number
+     *
      * @param string $input
      * @return string
      */
@@ -65,6 +67,15 @@ class Database
         return $output_array[0];
     }
 
+    /**
+     * Execute a SELECT query on the database ordered by $by.
+     *
+     * @param $what
+     * @param $from
+     * @param $by
+     * @param int|string $where
+     * @return bool|mysqli_result
+     */
     public function selectOrdered($what, $from, $by, $where = -1)
     {
         if (gettype($where) !== "string") {

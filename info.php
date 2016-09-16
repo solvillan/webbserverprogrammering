@@ -1,7 +1,7 @@
 <?php
     // Init vars
     if (isset($_GET['sid'])) {
-        $id = $_GET['sid'];
+        $id = $db->escape_string($_GET['sid']);
     } else {
         $id = 1;
     }
@@ -41,13 +41,19 @@
         if (isset($_POST['parentInfo']) || isset($_POST['parentContact'])) {
             echo "<h4>Föräldrar</h4>";
             echo "<table>";
+
+            //Table header
             echo "<tr class='odd'>";
             if (isset($_POST['parentInfo'])) echo "<th>Namn</th>";
             if (isset($_POST['parentContact'])) {
                 echo "<th>Adress</th><th>E-mail</th><th>Telefon</th>";
             }
             echo "</tr>";
+
+            // For alternation
             $odd = false;
+
+            // Iterate through parents
             foreach ($parents as $parent) {
                 echo '<tr class="'.($odd ? "odd" : "even").'">';
                 $odd = !$odd;
@@ -68,13 +74,18 @@
         }
     ?>
     <?php
+        // Show classes and grades
         if (isset($_POST['grades'])) {
             echo "<h4>Kurser</h4>";
             echo "<table>";
             echo "<tr class='odd'>";
             echo "<th>Kurs</th><th>Lärare</th><th>Omdöme</th>";
             echo "</tr>";
+
+            // For alternation
             $odd = false;
+
+            // Itereate classes
             foreach ($classes as $class) {
                 echo '<tr class="'.($odd ? "odd" : "even").'">';
                 $odd = !$odd;
@@ -87,6 +98,7 @@
         }
     ?>
     <?php
+    // If no options, display error
     if (!isset($_POST['parentInfo']) && !isset($_POST['parentContact']) && !isset($_POST['grades'])) {
         echo "<h3>Inga alternativ valda</h3>";
     }

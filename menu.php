@@ -8,7 +8,7 @@
 <body>
 <section id="wrapper">
     <h1>Välj åtgärd</h1>
-    <form name="choices" action="index.php?p=info&sid=<?php
+    <form name="choices" action="index.php?p=info&sid=<?php // Insert the requested sid
     if (isset($_GET['sid'])) {
         echo $db->escape_string($_GET['sid']);
     } else {
