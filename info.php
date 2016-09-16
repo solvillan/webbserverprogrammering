@@ -1,7 +1,12 @@
 <?php
+if (!isset($db)) {
+    echo "<script>location.href='index.php?p=info'</script>";
+}
+?>
+<?php
     // Init vars
-    if (isset($_GET['sid'])) {
-        $id = $db->escape_string($_GET['sid']);
+    if (isset($_GET['sid']) && $_GET['sid'] != "") {
+        $id = $db->number_format($_GET['sid']);
     } else {
         $id = 1;
     }

@@ -61,10 +61,26 @@ class Database
      * @param string $input
      * @return string
      */
-    public function escape_string($input) {
+    public function number_format($input) {
         $output_array = [];
         preg_match("/^([0-9])+/", $input, $output_array);
         return $output_array[0];
+    }
+
+    /**
+     * Escape string
+     * @param $input
+     * @return string
+     */
+    public function escape_string($input) {
+        $output_array = [];
+        preg_match("/(['].+['])/", $input, $output_array);
+        if (isset($output_array[0])) {
+            return $this->connection->real_escape_string($output_array[0]);
+        } else {
+            $output_array = preg_split("/;/", $input);
+            return $this->connection->real_escape_string($output_array[0]);
+        }
     }
 
     /**
@@ -91,6 +107,14 @@ class Database
         }
     }
 
+    /**
+     * Execute a UPDATE query on the database.
+     * @param $col
+     * @param $what
+     * @param $from
+     * @param $where
+     * @return bool|mysqli_result
+     */
     public function update($col, $what, $from, $where) {
         $result = $this->connection->query("UPDATE $from SET $col=$what WHERE $where;");
         print_r($this->connection->error);

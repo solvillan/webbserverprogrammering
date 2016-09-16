@@ -1,3 +1,8 @@
+<?php
+if (!isset($db)) {
+    echo "<script>location.href='index.php'</script>";
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +16,7 @@
             <table>
                 <?php
                 // Get all students ordered by surname.
-                $result = $db->selectOrdered("*", "student", "ename");
+                $result = $db->selectOrdered("*", "student", "ename, fname");
 
                 // If there is 1 or more students, iterate through them
                 if ($result->num_rows > 0) {

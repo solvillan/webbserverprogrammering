@@ -7,7 +7,7 @@
  */
 
 //Include the database connector
-include "Database.php";
+include_once "Database.php";
 $db = new Database("localhost", "root", "", "school");
 
 // Check if page is set
