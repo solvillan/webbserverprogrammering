@@ -90,4 +90,10 @@ class Database
             return $result;
         }
     }
+
+    public function update($col, $what, $from, $where) {
+        $result = $this->connection->query("UPDATE $from SET $col=$what WHERE $where;");
+        print_r($this->connection->error);
+        return $result;
+    }
 }

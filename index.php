@@ -18,6 +18,8 @@ if (isset($_GET['p'])) {
         include 'menu.php';
     } else if ($p == 'info') {
         include 'info.php';
+    } else if ($p == 'updateStudent') {
+        include 'update_student.php';
     } else { // Failsafe
         include 'start.php';
     }
