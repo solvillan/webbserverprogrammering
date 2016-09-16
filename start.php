@@ -10,17 +10,19 @@
             <h1>Nacka gymnasium</h1>
             <table>
                 <?php
-                $result = $db->select("*", "student");
+                $result = $db->selectOrdered("*", "student", "ename");
                 if ($result->num_rows > 0) {
                     echo "<tr class='odd'>";
-                    echo "<th colspan='2'>Elev</th>";
+                    echo "<th>Efternamn</th>";
+                    echo "<th colspan='3'>Förnamn</th>";
                     echo "</tr>";
                     $odd = false;
                     while ($row = $result->fetch_array()) {
                         echo '<tr class="'.($odd ? "odd" : "even").'">';
                         $odd = !$odd;
-                        echo "<td>".$row['fname']." ".$row['ename']."</td>";
-                        echo '<td class="button"><a href="index.php?p=menu&sid='.$row['id'].'">Åtgärder</a></td>';
+                        echo "<td>".$row['ename']."</td>";
+                        echo "<td>".$row['fname']."</td>";
+                        echo '<td class="button" colspan="2"><a href="index.php?p=menu&sid='.$row['id'].'">Åtgärder</a></td>';
                         echo "</tr>";
                     }
                 } else {

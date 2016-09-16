@@ -19,6 +19,7 @@ table {
 
 th {
     background-color: #aaa !important;
+    text-align: left;
 }
 
 #wrapper {

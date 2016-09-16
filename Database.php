@@ -64,4 +64,19 @@ class Database
         preg_match("/^([0-9])+/", $input, $output_array);
         return $output_array[0];
     }
+
+    public function selectOrdered($what, $from, $by, $where = -1)
+    {
+        if (gettype($where) !== "string") {
+            //echo "SELECT $what FROM $from;";
+            $result = $this->connection->query("SELECT $what FROM $from ORDER BY $by;");
+            print_r($this->connection->error);
+            return $result;
+        } else {
+            //echo "SELECT $what FROM $from WHERE $where;";
+            $result = $this->connection->query("SELECT $what FROM $from WHERE $where ORDER BY $by;");
+            print_r($this->connection->error);
+            return $result;
+        }
+    }
 }
