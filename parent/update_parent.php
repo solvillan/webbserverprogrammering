@@ -1,6 +1,6 @@
 <?php
 if (!isset($db)) {
-    echo "<script>location.href='index.php?p=updateStudent'</script>";
+    echo "<script>location.href='../index.php'</script>";
 }
 ?>
 
@@ -40,7 +40,7 @@ while ($prow = $sp->fetch_array()) {
 <head>
     <title>Nacka Gymnasium - <?php echo $student['fname']." ".$student["ename"]; ?></title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <section id="wrapper">
@@ -79,7 +79,7 @@ while ($prow = $sp->fetch_array()) {
         echo "<h3>Uppdaterad</h3><br>";
         echo "<a href='index.php?p=updateStudent&sid=".$_POST['id']."'>Tillbaka</a>";
     } else {
-        include 'update_student_form.php';
+        include 'update_parent_form.php';
     }
 
     ?>

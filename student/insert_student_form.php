@@ -1,4 +1,4 @@
-<form action="index.php?p=insertStudent" method="post">
+<form action="../index.php?p=insertStudent" method="post">
     <table>
         <tr>
             <td>Förnamn</td>
@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <td><input type="submit"></td>
-            <td><a href="index.php">Till listan</a></td>
+            <td><a href="../index.php">Till listan</a></td>
         </tr>
     </table>
 </form>

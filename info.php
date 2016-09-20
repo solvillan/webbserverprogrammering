@@ -44,7 +44,7 @@ if (!isset($db)) {
     <h1><?php echo $student['fname']." ".$student["ename"]; ?></h1>
     <?php
         if (isset($_POST['parentInfo']) || isset($_POST['parentContact'])) {
-            echo "<h4>Föräldrar - <a href='index.php?p=insertParent'>Lägg till</a></h4>";
+            echo "<h4>Föräldrar - <a href='index.php?p=insertParent&sid=".$id."'>Lägg till</a></h4>";
             echo "<table>";
 
             //Table header

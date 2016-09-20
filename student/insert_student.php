@@ -3,7 +3,7 @@
 <head>
     <title>Nacka Gymnasium - Lägg till student</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <section id="wrapper">
@@ -20,7 +20,7 @@
             $stmt->bind_param("ssss", $fname, $ename, $address, $email);
             $stmt->execute();
             echo "<h3>Uppdaterad</h3><br>";
-            echo "<a href='index.php'>Tillbaka</a>";
+            echo "<a href='../index.php'>Tillbaka</a>";
     } else {
         include 'insert_student_form.php';
     }

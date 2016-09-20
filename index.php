@@ -21,9 +21,11 @@ if (isset($_GET['p'])) {
     } else if ($p == 'info') {
         include 'info.php';
     } else if ($p == 'updateStudent') {
-        include 'update_student.php';
+        include 'student/update_student.php';
     } else if ($p == 'insertStudent') {
-        include 'insert_student.php';
+        include 'student/insert_student.php';
+    } else if ($p == 'insertParent') {
+        include 'parent/insert_parent.php';
     } else { // Failsafe
         include 'start.php';
     }
