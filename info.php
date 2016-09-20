@@ -44,14 +44,20 @@ if (!isset($db)) {
     <h1><?php echo $student['fname']." ".$student["ename"]; ?></h1>
     <?php
         if (isset($_POST['parentInfo']) || isset($_POST['parentContact'])) {
-            echo "<h4>Föräldrar</h4>";
+            echo "<h4>Föräldrar - <a href='index.php?p=insertParent'>Lägg till</a></h4>";
             echo "<table>";
 
             //Table header
             echo "<tr class='odd'>";
-            if (isset($_POST['parentInfo'])) echo "<th>Namn</th>";
+            if (isset($_POST['parentInfo']))  {
+                if (!isset($_POST['parentContact'])) {
+                    echo "<th colspan='2'>Namn</th>";
+                } else {
+                    echo "<th>Namn</th>";
+                }
+            }
             if (isset($_POST['parentContact'])) {
-                echo "<th>Adress</th><th>E-mail</th><th>Telefon</th>";
+                echo "<th>Adress</th><th>E-mail</th><th colspan='2'>Telefon</th>";
             }
             echo "</tr>";
 
@@ -67,6 +73,7 @@ if (!isset($db)) {
                     echo "<td>" . $parent['address'] . "</td>";
                     echo "<td>" . $parent['email'] . "</td>";
                     echo "<td>" . $parent['phone_nr'] . "</td>";
+                    echo "<td><a href='index.php?p=updateParent?pid=" . $parent['id']. "'>Uppdatera</a></td>";
                 }
                 echo "</tr>";
             }

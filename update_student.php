@@ -79,7 +79,7 @@ while ($prow = $sp->fetch_array()) {
         echo "<h3>Uppdaterad</h3><br>";
         echo "<a href='index.php?p=updateStudent&sid=".$_POST['id']."'>Tillbaka</a>";
     } else {
-        include 'update_form.php';
+        include 'update_student_form.php';
     }
 
     ?>

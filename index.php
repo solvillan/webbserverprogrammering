@@ -8,7 +8,9 @@
 
 //Include the database connector
 include_once "Database.php";
-$db = new Database("localhost", "root", "", "school");
+if (!isset($db)) {
+    $db = new Database("localhost", "root", "", "school");
+}
 
 // Check if page is set
 if (isset($_GET['p'])) {
@@ -20,6 +22,8 @@ if (isset($_GET['p'])) {
         include 'info.php';
     } else if ($p == 'updateStudent') {
         include 'update_student.php';
+    } else if ($p == 'insertStudent') {
+        include 'insert_student.php';
     } else { // Failsafe
         include 'start.php';
     }
