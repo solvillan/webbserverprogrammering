@@ -15,7 +15,6 @@ class Database
 {
 
     private $connection;
-    private $select, $selectWhere, $selectOrder, $selectOrderWhere, $update;
 
     /**
      * Database constructor.
@@ -44,14 +43,11 @@ class Database
      */
     public function select($whatSelect, $fromSelect, $whereSelect = -1) {
         if (gettype($whereSelect) !== "string") {
-            $this->select = $this->connection->prepare("SELECT $whatSelect FROM $fromSelect");
-            $result = $this->select->fetch();
+            $result = $this->connection->query("SELECT $whatSelect FROM $fromSelect");
             print_r($this->connection->error);
             return $result;
         } else {
-            $this->selectWhere = $this->connection->prepare("SELECT $whatSelect FROM $fromSelect WHERE :where");
-            $this->selectWhere->bind_param(':where', $whereSelect);
-            $result = $this->selectWhere->fetch();
+            $result = $this->connection->query("SELECT $whatSelect FROM $fromSelect WHERE $whereSelect");
             print_r($this->connection->error);
             return $result;
         }
@@ -97,20 +93,63 @@ class Database
     public function selectOrdered($whatOrdered, $fromOrdered, $by, $whereOrdered= -1)
     {
         if (gettype($whereOrdered) !== "string") {
-            $this->selectOrder = $this->connection->prepare();
-            //$this->selectOrder->bind_param(':by', $by);
             $result = $this->connection->query("SELECT $whatOrdered FROM $fromOrdered ORDER BY $by");
             print_r($this->connection->error);
             return $result;
         } else {
-            $this->selectOrderWhere = $this->connection->prepare("SELECT $whatOrdered FROM $fromOrdered WHERE :where ORDER BY :by");
-            $this->selectOrderWhere->bind_param(':by', $by);
-            $this->selectOrderWhere->bind_param(':where', $whereOrdered);
-            $result = $this->selectOrderWhere->fetch();
+            $result = $this->connection->query("SELECT $whatOrdered FROM $fromOrdered WHERE $whereOrdered ORDER BY $by");
             print_r($this->connection->error);
             return $result;
         }
     }
+
+    /**
+     * @param $what
+     * @param $from
+     * @param $where
+     * @return mysqli_stmt
+     */
+    public function createSelect($what, $from, $where) {
+        $stmt = $this->connection->prepare("SELECT $what FROM $from WHERE $where");
+        return $stmt;
+    }
+
+    /**
+     * @param $col
+     * @param $from
+     * @param $where
+     * @return mysqli_stmt
+     */
+    public function createUpdate($col, $from, $where) {
+        $query = "UPDATE $from SET ".$col[0]."=?";
+
+        for ($i = 1; $i < count($col); $i++) {
+            $query = $query.", ".$col[$i]."=?";
+        }
+
+
+
+        $query = $query." WHERE $where";
+        $stmt = $this->connection->prepare($query);
+        return $stmt;
+    }
+
+    public function createInsert($table, $cols) {
+        $query = "INSERT INTO $table (".$cols[0];
+
+        for ($i = 1; $i < count($cols); $i++) {
+            $query = $query.", ".$cols[$i];
+        }
+        $query = $query.") VALUES (?";
+        for ($i = 1; $i < count($cols); $i++) {
+            $query = $query.", ?";
+        }
+        $query = $query.")";
+
+        $stmt = $this->connection->prepare($query);
+        return $stmt;
+    }
+
 
     /**
      * Execute a UPDATE query on the database.
@@ -118,12 +157,10 @@ class Database
      * @param $whatUpdate
      * @param $fromUpdate
      * @param $whereUpdate
+     * @deprecated
      */
     public function update($col, $whatUpdate, $fromUpdate, $whereUpdate){
-        $this->update = $this->connection->prepare("UPDATE $fromUpdate SET $col=:what WHERE :where");
-        $this->update->bind_param(':what', $whatUpdate);
-        $this->update->bind_param(':where', $whereUpdate);
-        $this->update->execute();
+        $this->connection->query("UPDATE $fromUpdate SET $col=$whatUpdate WHERE $whereUpdate");
         print_r($this->connection->error);
     }
 }
