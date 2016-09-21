@@ -10,7 +10,7 @@ if (!isset($db)) {
     } else {
         $id = 1;
     }
-    $student = $db->select("*", "student", "id=".$id)->fetch_array();
+    $parent = $db->select("*", "student", "id=".$id)->fetch_array();
     $scgrades = $db->select("*", "student_class", "student_id=".$id);
     $grades = [];
     $sp = $db->select("*", "student_parent", "student_id=".$id);
@@ -35,13 +35,13 @@ if (!isset($db)) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Nacka Gymnasium - <?php echo $student['fname']." ".$student["ename"]; ?></title>
+    <title>Nacka Gymnasium - <?php echo $parent['fname']." ".$parent["ename"]; ?></title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <section id="wrapper">
-    <h1><?php echo $student['fname']." ".$student["ename"]; ?></h1>
+    <h1><?php echo $parent['fname']." ".$parent["ename"]; ?></h1>
     <?php
         if (isset($_POST['parentInfo']) || isset($_POST['parentContact'])) {
             echo "<h4>Föräldrar - <a href='index.php?p=insertParent&sid=".$id."'>Lägg till</a></h4>";
@@ -73,8 +73,8 @@ if (!isset($db)) {
                     echo "<td>" . $parent['address'] . "</td>";
                     echo "<td>" . $parent['email'] . "</td>";
                     echo "<td>" . $parent['phone_nr'] . "</td>";
-                    echo "<td><a href='index.php?p=updateParent?pid=" . $parent['id']. "'>Uppdatera</a></td>";
                 }
+                echo "<td><a href='index.php?p=updateParent&pid=" . $parent['id']. "'>Uppdatera</a></td>";
                 echo "</tr>";
             }
             if (count($parents) == 0) {

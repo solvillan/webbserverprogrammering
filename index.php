@@ -26,6 +26,8 @@ if (isset($_GET['p'])) {
         include 'student/insert_student.php';
     } else if ($p == 'insertParent') {
         include 'parent/insert_parent.php';
+    } else if ($p == 'updateParent') {
+        include 'parent/update_parent.php';
     } else { // Failsafe
         include 'start.php';
     }

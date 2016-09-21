@@ -150,6 +150,12 @@ class Database
         return $stmt;
     }
 
+    public function createDelete($table, $where) {
+        $query = "DELETE FROM $table WHERE $where";
+        $stmt = $this->connection->prepare($query);
+        return $stmt;
+    }
+
 
     /**
      * Execute a UPDATE query on the database.
