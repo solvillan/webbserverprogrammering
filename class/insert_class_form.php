@@ -1,12 +1,19 @@
-<form action="../index.php?p=insertStudent" method="post">
+<?php
+if (!isset($id)) {
+    echo "<script>location.href='../index.php'</script>";
+}
+?>
+
+<form action="../public/index.php?p=insertParent" method="post">
+    <input type="hidden" name="sid" value="<?php echo $id?>">
     <table>
         <tr>
-            <td>Förnamn</td>
-            <td><input type="text" name="fname" value=""></td>
+            <td>Namn</td>
+            <td><input type="text" name="name" value=""></td>
         </tr>
         <tr>
-            <td>Efternamn</td>
-            <td><input type="text" name="ename" value=""></td>
+            <td>Telefon</td>
+            <td><input type="text" name="phone_nr" value=""></td>
         </tr>
         <tr>
             <td>Adress</td>

@@ -96,9 +96,9 @@ while ($srow = $allStudentQuery->fetch_array()) {
 
         }
         echo "<h3>Uppdaterad</h3><br>";
-        echo "<a class='regular regularBtn' href='index.php?p=updateParent&pid=".$_POST['id']."'>Tillbaka</a>";
+        echo "<a href='index.php?p=updateParent&pid=".$_POST['id']."'>Tillbaka</a>";
     } else {
-        include 'update_parent_form.php';
+        include 'update_class_form.php';
     }
 
     ?>

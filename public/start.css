@@ -1,0 +1,49 @@
+@import url("style.css");
+
+.banner {
+    font-size: 4em;
+    text-align: center;
+    font-family: 'Metropolis 1920', 'Poiret One', sans-serif;
+    font-weight: normal;
+}
+
+.wrapper {
+    width: 60%;
+    margin: auto;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.item {
+    display: inline;
+    list-style-type: none;
+    border-right: 2px solid #eeeeee;
+    padding: 5px 20px;
+}
+
+.item:last-child {
+    border: none;
+}
+
+.item a{
+    font-size: 1.5em;
+    color: #eeeeee;
+    text-decoration: none !important;
+    font-family: 'Poiret One', sans-serif;
+    border-bottom: 2px solid transparent;
+    transition: border-color 1s ease;
+}
+
+.item a:hover {
+    border-bottom: 2px solid #eeeeee;
+    transition: border-color 1s ease;
+}

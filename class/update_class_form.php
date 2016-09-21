@@ -7,7 +7,7 @@ if (!isset($parent) && !isset($id) && !isset($students) && !isset($allStudents))
 
 <form action="../public/index.php?p=updateParent" method="post">
     <input type="hidden" name="id" value="<?php echo $id ?>">
-    <table class="form">
+    <table>
         <tr>
             <td>Förnamn</td>
             <td colspan="3"><input type="text" name="name" value="<?php echo $parent['name']?>"></td>
@@ -28,7 +28,7 @@ if (!isset($parent) && !isset($id) && !isset($students) && !isset($allStudents))
     <table>
         <tr>
             <th>Namn</th>
-            <!--<th>Address</th>-->
+            <th>Address</th>
             <th>Förälder till</th>
         </tr>
         <?php
@@ -37,13 +37,11 @@ if (!isset($parent) && !isset($id) && !isset($students) && !isset($allStudents))
             echo "<tr class='".($odd ? "odd" : "even")."'>";
             $odd = !$odd;
             echo "<td>".$s['fname']." ".$s['ename']."</td>";
-            //echo "<td>".$s['address']."</td>";
+            echo "<td>".$s['address']."</td>";
             if (in_array($s, $students)) {
-                echo "<td><div class=\"slideThree\"><input type=\"checkbox\" value=\"".$s['id']."\" id=\"".$s['id']."\" name=\"student[]\" checked /><label for=\"".$s['id']."\"></label></div></td>";
-                //echo '<td><input type="checkbox" name="student[]" value="'.$s['id'].'" checked></td>';
+                echo '<td><input type="checkbox" name="student[]" value="'.$s['id'].'" checked></td>';
             } else {
-                echo "<td><div class=\"slideThree\"><input type=\"checkbox\" value=\"".$s['id']."\" id=\"".$s['id']."\" name=\"student[]\" /><label for=\"".$s['id']."\"></label></div></td>";
-                //echo '<td><input type="checkbox" name="student[]" value="'.$s['id'].'"></td>';
+                echo '<td><input type="checkbox" name="student[]" value="'.$s['id'].'"></td>';
             }
             echo "</tr>";
         }
@@ -51,7 +49,7 @@ if (!isset($parent) && !isset($id) && !isset($students) && !isset($allStudents))
     </table>
     <table>
         <tr>
-            <td><input type="submit" class="go"></td>
-            <td><a class="regular regularBtn" href="../public/index.php?p=listParent">Till listan</a></td>
+            <td><input type="submit"></td>
+            <td><a href="../public/index.php">Till listan</a></td>
         </tr></table>
 </form>

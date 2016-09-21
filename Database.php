@@ -134,6 +134,11 @@ class Database
         return $stmt;
     }
 
+    /**
+     * @param $table
+     * @param $cols
+     * @return mysqli_stmt
+     */
     public function createInsert($table, $cols) {
         $query = "INSERT INTO $table (".$cols[0];
 
@@ -150,6 +155,11 @@ class Database
         return $stmt;
     }
 
+    /**
+     * @param $table
+     * @param $where
+     * @return mysqli_stmt
+     */
     public function createDelete($table, $where) {
         $query = "DELETE FROM $table WHERE $where";
         $stmt = $this->connection->prepare($query);

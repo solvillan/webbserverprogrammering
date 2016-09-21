@@ -40,7 +40,7 @@ while ($prow = $sp->fetch_array()) {
 <head>
     <title>Nacka Gymnasium - <?php echo $student['fname']." ".$student["ename"]; ?></title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <section id="wrapper">

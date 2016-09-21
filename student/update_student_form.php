@@ -5,7 +5,7 @@ if (!isset($student) && !isset($id)) {
 ?>
 
 
-<form action="../index.php?p=updateStudent" method="post">
+<form action="../public/index.php?p=updateStudent" method="post">
     <input type="hidden" name="id" value="<?php echo $id ?>">
     <table>
         <tr>
@@ -26,7 +26,7 @@ if (!isset($student) && !isset($id)) {
         </tr>
         <tr>
             <td><input type="submit"></td>
-            <td><a href="../index.php">Till listan</a></td>
+            <td><a href="../public/index.php">Till listan</a></td>
         </tr>
     </table>
 </form>
