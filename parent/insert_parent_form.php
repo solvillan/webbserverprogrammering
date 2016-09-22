@@ -4,9 +4,9 @@ if (!isset($id)) {
 }
 ?>
 
-<form action="../public/index.php?p=insertParent" method="post">
+<form action="index.php?p=insertParent" method="post">
     <input type="hidden" name="sid" value="<?php echo $id?>">
-    <table>
+    <table class="form">
         <tr>
             <td>Namn</td>
             <td><input type="text" name="name" value="" required></td>
@@ -24,8 +24,8 @@ if (!isset($id)) {
             <td><input type="email" name="email" value="" required></td>
         </tr>
         <tr>
-            <td><input type="submit"></td>
-            <td><a href="../public/index.php">Till listan</a></td>
+            <td><input class="go" type="submit"></td>
+            <td><a class="regular regularBtn" href="index.php?p=listParent">Till listan</a></td>
         </tr>
     </table>
 </form>

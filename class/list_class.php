@@ -16,13 +16,14 @@ if (!isset($db)) {
     <table>
         <?php
         // Get all students ordered by surname.
-        $result = $db->selectOrdered("*", "parent", "name");
+        $result = $db->selectOrdered("*", "class", "name");
 
         // If there is 1 or more students, iterate through them
         if ($result->num_rows > 0) {
             // Gen table header
             echo "<tr class='odd'>";
             echo "<th>Namn</th>";
+            echo "<th>Lärare</th>";
             echo "<th colspan='2' class='button'>Åtgärder</th>";
             echo "</tr>";
 
@@ -34,12 +35,13 @@ if (!isset($db)) {
                 echo '<tr class="'.($odd ? "odd" : "even").'">';
                 $odd = !$odd;
                 echo "<td>".$row['name']."</td>";
-                echo '<td class="" ><a class="go goBtn" href="index.php?p=updateParent&pid='.$row['id'].'">Uppdatera</a></td>';
-                echo '<td class="" ><a class="delete deleteBtn" href="index.php?p=deleteParent&pid='.$row['id'].'">Radera</a></td>';
+
+                echo '<td class="" ><a class="go goBtn" href="index.php?p=updateClass&cid='.$row['id'].'">Uppdatera</a></td>';
+                echo '<td class="" ><a class="delete deleteBtn" href="index.php?p=deleteClass&cid='.$row['id'].'">Radera</a></td>';
                 echo "</tr>";
             }
         } else { // There is no students.
-            echo "<tr><th>Det finns inga elever</th></tr>";
+            echo "<tr><th>Det finns inga kurser</th></tr>";
         }
 
         ?>

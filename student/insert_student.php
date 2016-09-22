@@ -20,7 +20,7 @@
             $stmt->bind_param("ssss", $fname, $ename, $address, $email);
             $stmt->execute();
             echo "<h3>Uppdaterad</h3><br>";
-            echo "<a href='../index.php'>Tillbaka</a>";
+            echo "<a class='regular regularBtn' href='../index.php?p=listStudent'>Tillbaka</a>";
     } else {
         include 'insert_student_form.php';
     }

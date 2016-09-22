@@ -5,9 +5,9 @@ if (!isset($student) && !isset($id)) {
 ?>
 
 
-<form action="../public/index.php?p=updateStudent" method="post">
+<form action="index.php?p=updateStudent" method="post">
     <input type="hidden" name="id" value="<?php echo $id ?>">
-    <table>
+    <table class="form">
         <tr>
             <td>Förnamn</td>
             <td><input type="text" name="fname" value="<?php echo $student['fname']?>"></td>
@@ -25,8 +25,8 @@ if (!isset($student) && !isset($id)) {
             <td><input type="email" name="email" value="<?php echo $student['email']?>"></td>
         </tr>
         <tr>
-            <td><input type="submit"></td>
-            <td><a href="../public/index.php">Till listan</a></td>
+            <td><input class="go" type="submit"></td>
+            <td><a class="regular regularBtn" href="index.php?p=listStudent">Till listan</a></td>
         </tr>
     </table>
 </form>

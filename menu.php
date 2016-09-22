@@ -13,7 +13,7 @@ if (!isset($db)) {
 <body>
 <section id="wrapper">
     <h1>Välj åtgärd</h1>
-    <form name="choices" action="public/index.php?p=info&sid=<?php // Insert the requested sid
+    <form name="choices" action="index.php?p=info&sid=<?php // Insert the requested sid
     if (isset($_GET['sid'])) {
         echo $db->number_format($_GET['sid']);
     } else {
@@ -49,7 +49,7 @@ if (!isset($db)) {
             </tr>
             <tr>
                 <td><input class="go" type="submit"></td>
-                <td ><a class="regular regularBtn" href="public/index.php?p=updateStudent&sid=<?php // Insert the requested sid
+                <td ><a class="regular regularBtn" href="index.php?p=updateStudent&sid=<?php // Insert the requested sid
                     if (isset($_GET['sid'])) {
                         echo $db->number_format($_GET['sid']);
                     } else {

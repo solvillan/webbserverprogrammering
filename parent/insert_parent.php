@@ -41,7 +41,7 @@ if (isset($_GET['sid']) && $_GET['sid'] != "") {
             $stmt->execute();
 
             echo "<h3>Uppdaterad</h3><br>";
-            echo "<a href='../index.php'>Tillbaka</a>";
+            echo "<a class='regular regularBtn' href='index.php'>Tillbaka</a>";
     } else {
         include 'insert_parent_form.php';
     }

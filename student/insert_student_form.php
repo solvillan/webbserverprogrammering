@@ -1,5 +1,5 @@
 <form action="../index.php?p=insertStudent" method="post">
-    <table>
+    <table class="form">
         <tr>
             <td>Förnamn</td>
             <td><input type="text" name="fname" value=""></td>
@@ -17,8 +17,8 @@
             <td><input type="email" name="email" value=""></td>
         </tr>
         <tr>
-            <td><input type="submit"></td>
-            <td><a href="../public/index.php">Till listan</a></td>
+            <td><input class="go" type="submit"></td>
+            <td><a class="regular regularBtn" href="../public/index.php">Till listan</a></td>
         </tr>
     </table>
 </form>
