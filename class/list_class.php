@@ -35,7 +35,7 @@ if (!isset($db)) {
                 echo '<tr class="'.($odd ? "odd" : "even").'">';
                 $odd = !$odd;
                 echo "<td>".$row['name']."</td>";
-
+                echo "<td>".$row['teacher_name']."</td>";
                 echo '<td class="" ><a class="go goBtn" href="index.php?p=updateClass&cid='.$row['id'].'">Uppdatera</a></td>';
                 echo '<td class="" ><a class="delete deleteBtn" href="index.php?p=deleteClass&cid='.$row['id'].'">Radera</a></td>';
                 echo "</tr>";

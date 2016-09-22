@@ -6,25 +6,27 @@ if (!isset($db)) {
 
 <?php
 // Init vars
-if (isset($_GET['pid']) && $_GET['pid'] != "") {
-    $id = $db->number_format($_GET['pid']);
+if (isset($_GET['cid']) && $_GET['cid'] != "") {
+    $id = $db->number_format($_GET['cid']);
 } else if (isset($_POST['id']) && $_POST['id'] != "") {
     $id = $db->number_format($_POST['id']);
 } else {
     $id = 1;
 }
-$parent = $db->select("*", "parent", "id=".$id)->fetch_array();
-$sp = $db->select("*", "student_parent", "parent_id=".$id);
+$class = $db->select("*", "class", "id=".$id)->fetch_array();
+$sc = $db->select("*", "student_class", "class_id=".$id);
 $students = [];
 $studentIds = [];
 $allStudents = [];
 $allStudentQuery = $db->select("*", "student");
+$grades = [];
 
-while ($prow = $sp->fetch_array()) {
+while ($prow = $sc->fetch_array()) {
     $tmp = $db->select("*", "student", "id=".$prow['student_id']);
     while ($p = $tmp->fetch_array()) {
         $students[] = $p;
         $studentIds[] = $p['id'];
+        $grades[$p['id']] = $prow['grade'];
     }
 }
 while ($srow = $allStudentQuery->fetch_array()) {
@@ -36,48 +38,34 @@ while ($srow = $allStudentQuery->fetch_array()) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Nacka Gymnasium - <?php echo $parent['fname']." ".$parent["ename"]; ?></title>
+    <title>Nacka Gymnasium - <?php echo $class['name']; ?></title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <section id="wrapper">
-    <h1><?php echo $parent['name']; ?></h1>
+    <h1><?php echo $class['name']; ?></h1>
     <?php
 
     if (isset($_POST['id'])) {
         if (isset($_POST['name'])) {
             //$db->update("fname", "'".$db->escape_string($_POST['fname'])."'", "student", "id=".$db->number_format($_POST['id']));
             $name = $_POST['name'];
-            $stmt = $db->createUpdate(["name"], "parent", "id=?");
+            $stmt = $db->createUpdate(["name"], "class", "id=?");
             $stmt->bind_param("si", $name, $id);
             $stmt->execute();
         }
-        if (isset($_POST['phone_nr'])) {
+        if (isset($_POST['teacher'])) {
             //$db->update("ename", "'".$db->escape_string($_POST['ename'])."'", "student", "id=".$db->number_format($_POST['id']));
-            $phone_nr = $_POST['phone_nr'];
-            $stmt = $db->createUpdate(["phone_nr"], "parent", "id=?");
+            $phone_nr = $_POST['teacher'];
+            $stmt = $db->createUpdate(["teacher_name"], "class", "id=?");
             $stmt->bind_param("si", $phone_nr, $id);
-            $stmt->execute();
-        }
-        if (isset($_POST['address'])) {
-            //$db->update("address", "'".$db->escape_string($_POST['address'])."'", "student", "id=".$db->number_format($_POST['id']));
-            $address = $_POST['address'];
-            $stmt = $db->createUpdate(["address"], "parent", "id=?");
-            $stmt->bind_param("si", $address, $id);
-            $stmt->execute();
-        }
-        if (isset($_POST['email'])) {
-            //$db->update("email", "'".$db->escape_string($_POST['email'])."'", "student", "id=".$db->number_format($_POST['id']));
-            $email = $_POST['email'];
-            $stmt = $db->createUpdate(["email"], "parent", "id=?");
-            $stmt->bind_param("si", $email, $id);
             $stmt->execute();
         }
         if (isset($_POST['student'])) {
             $student;
 
-            $insert = $db->createInsert("student_parent", ["parent_id", "student_id"]);
+            $insert = $db->createInsert("student_class", ["class_id", "student_id"]);
             $insert->bind_param("ii", $id, $student);
 
             foreach ($_POST['student'] as $student) {
@@ -86,7 +74,7 @@ while ($srow = $allStudentQuery->fetch_array()) {
                 }
             }
 
-            $delete = $db->createDelete("student_parent", "parent_id=? and student_id=?");
+            $delete = $db->createDelete("student_class", "parent_id=? and student_id=?");
             $delete->bind_param("ii", $id, $student);
             foreach ($studentIds as $student) {
                 if (!in_array($student, $_POST['student'])) {
@@ -96,7 +84,7 @@ while ($srow = $allStudentQuery->fetch_array()) {
 
         }
         echo "<h3>Uppdaterad</h3><br>";
-        echo "<a href='index.php?p=updateParent&pid=".$_POST['id']."'>Tillbaka</a>";
+        echo "<a href='index.php?p=updateClass&cid=".$_POST['id']."'>Tillbaka</a>";
     } else {
         include 'update_class_form.php';
     }

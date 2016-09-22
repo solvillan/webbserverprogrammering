@@ -34,6 +34,8 @@ if (isset($_GET['p'])) {
         include '../parent/list_parent.php';
     } else if ($p == 'deleteParent') {
         include '../parent/delete_parent.php';
+    } else if ($p == 'listClass') {
+        include '../class/list_class.php';
     } else { // Failsafe
         include '../start.php';
     }
