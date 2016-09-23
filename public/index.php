@@ -26,6 +26,8 @@ if (isset($_GET['p'])) {
         include '../student/insert_student.php';
     } else if ($p == 'listStudent') {
         include '../student/list_student.php';
+    } else if ($p == 'deleteStudent') {
+        include '../student/delete_student.php';
     } else if ($p == 'insertParent') {
         include '../parent/insert_parent.php';
     } else if ($p == 'updateParent') {
@@ -36,6 +38,10 @@ if (isset($_GET['p'])) {
         include '../parent/delete_parent.php';
     } else if ($p == 'listClass') {
         include '../class/list_class.php';
+    } else if ($p == 'updateClass') {
+        include '../class/update_class.php';
+    } else if ($p == 'insertClass') {
+        include '../class/insert_class.php';
     } else { // Failsafe
         include '../start.php';
     }

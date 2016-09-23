@@ -1,31 +1,42 @@
 <?php
-if (!isset($id)) {
+if (!isset($allStudents)) {
     echo "<script>location.href='../index.php'</script>";
 }
 ?>
 
-<form action="../public/index.php?p=insertParent" method="post">
-    <input type="hidden" name="sid" value="<?php echo $id?>">
-    <table>
+<form action="index.php?p=insertClass" method="post">
+    <table class="form">
         <tr>
-            <td>Namn</td>
+            <td>Kursnamn</td>
             <td><input type="text" name="name" value=""></td>
         </tr>
         <tr>
-            <td>Telefon</td>
-            <td><input type="text" name="phone_nr" value=""></td>
+            <td>Lärare</td>
+            <td><input type="text" name="teacher" value=""></td>
         </tr>
+    </table>
+    <table>
         <tr>
-            <td>Adress</td>
-            <td><input type="text" name="address" value=""></td>
+            <th>Namn</th>
+            <th>Address</th>
+            <th>Går kursen</th>
         </tr>
-        <tr>
-            <td>E-mail</td>
-            <td><input type="email" name="email" value=""></td>
-        </tr>
+        <?php
+        $odd = false;
+        foreach ($allStudents as $s) {
+            echo "<tr class='".($odd ? "odd" : "even")."'>";
+            $odd = !$odd;
+            echo "<td>".$s['fname']." ".$s['ename']."</td>";
+            echo "<td>".$s['address']."</td>";
+            echo "<td><div class=\"slideThree\"><input type=\"checkbox\" value=\"".$s['id']."\" id=\"".$s['id']."\" name=\"student[]\" /><label for=\"".$s['id']."\"></label></div></td>";
+            echo "</tr>";
+        }
+        ?>
+    </table>
+    <table>
         <tr>
             <td><input type="submit"></td>
-            <td><a href="../public/index.php">Till listan</a></td>
+            <td><a href="index.php">Till listan</a></td>
         </tr>
     </table>
 </form>

@@ -18,7 +18,7 @@ $sc = $db->select("*", "student_class", "class_id=".$id);
 $students = [];
 $studentIds = [];
 $allStudents = [];
-$allStudentQuery = $db->select("*", "student");
+$allStudentQuery = $db->selectOrdered("*", "student", "ename");
 $grades = [];
 
 while ($prow = $sc->fetch_array()) {
@@ -64,9 +64,10 @@ while ($srow = $allStudentQuery->fetch_array()) {
         }
         if (isset($_POST['student'])) {
             $student;
+            $tmp = "Ej satt";
 
-            $insert = $db->createInsert("student_class", ["class_id", "student_id"]);
-            $insert->bind_param("ii", $id, $student);
+            $insert = $db->createInsert("student_class", ["class_id", "student_id", "grade"]);
+            $insert->bind_param("iis", $id, $student, $tmp);
 
             foreach ($_POST['student'] as $student) {
                 if (!in_array($student, $studentIds)) {
@@ -74,14 +75,27 @@ while ($srow = $allStudentQuery->fetch_array()) {
                 }
             }
 
-            $delete = $db->createDelete("student_class", "parent_id=? and student_id=?");
+            $delete = $db->createDelete("student_class", "class_id=? and student_id=?");
             $delete->bind_param("ii", $id, $student);
             foreach ($studentIds as $student) {
                 if (!in_array($student, $_POST['student'])) {
                     $delete->execute();
                 }
             }
+            if (isset($_POST['grade']) && isset($_POST['studentId'])) {
+                $update = $db->createUpdate(["grade"], "student_class", "student_id=? and class_id=?");
+                $studentId;
+                $grade;
+                $update->bind_param("sii", $grade, $studentId, $id);
 
+                for ($i = 0; $i < count($_POST['grade']); $i++) {
+                    $grade = $_POST['grade'][$i];
+                    $studentId = $_POST['studentId'][$i];
+                    echo "Grade: ".$grade." Student: ".$studentId." I: ".$i." Count: ".count($_POST['grade']);
+                    echo " Result: ".$update->execute()."<br>";
+                }
+
+            }
         }
         echo "<h3>Uppdaterad</h3><br>";
         echo "<a href='index.php?p=updateClass&cid=".$_POST['id']."'>Tillbaka</a>";

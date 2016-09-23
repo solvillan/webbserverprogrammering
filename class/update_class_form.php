@@ -1,35 +1,28 @@
 <?php
-if (!isset($parent) && !isset($id) && !isset($students) && !isset($allStudents)) {
+if (!isset($class) && !isset($id) && !isset($students) && !isset($allStudents)) {
     echo "<script>location.href='../index.php'</script>";
 }
 ?>
 
 
-<form action="../public/index.php?p=updateParent" method="post">
+<form action="index.php?p=updateClass" method="post">
     <input type="hidden" name="id" value="<?php echo $id ?>">
-    <table>
+    <table class="form">
         <tr>
-            <td>Förnamn</td>
-            <td colspan="3"><input type="text" name="name" value="<?php echo $parent['name']?>"></td>
+            <td>Kursnamn</td>
+            <td colspan="3"><input type="text" name="name" value="<?php echo $class['name']?>"></td>
         </tr>
         <tr>
-            <td>Telefon</td>
-            <td colspan="3"><input type="text" name="phone_nr" value="<?php echo $parent['phone_nr']?>"></td>
-        </tr>
-        <tr>
-            <td>Adress</td>
-            <td colspan="3"><input type="text" name="address" value="<?php echo $parent['address']?>"></td>
-        </tr>
-        <tr>
-            <td>E-mail</td>
-            <td colspan="3"><input type="email" name="email" value="<?php echo $parent['email']?>"></td>
+            <td>Lärare</td>
+            <td colspan="3"><input type="text" name="teacher" value="<?php echo $class['teacher_name']?>"></td>
         </tr>
     </table>
     <table>
         <tr>
             <th>Namn</th>
             <th>Address</th>
-            <th>Förälder till</th>
+            <th>Går kursen</th>
+            <th>Omdöme</th>
         </tr>
         <?php
         $odd = false;
@@ -39,9 +32,17 @@ if (!isset($parent) && !isset($id) && !isset($students) && !isset($allStudents))
             echo "<td>".$s['fname']." ".$s['ename']."</td>";
             echo "<td>".$s['address']."</td>";
             if (in_array($s, $students)) {
-                echo '<td><input type="checkbox" name="student[]" value="'.$s['id'].'" checked></td>';
+                echo "<td><div class=\"slideThree\"><input type=\"checkbox\" value=\"".$s['id']."\" id=\"".$s['id']."\" name=\"student[]\" checked /><label for=\"".$s['id']."\"></label></div></td>";
+                //echo '<td><input type="checkbox" name="student[]" value="'.$s['id'].'" checked></td>';
             } else {
-                echo '<td><input type="checkbox" name="student[]" value="'.$s['id'].'"></td>';
+                echo "<td><div class=\"slideThree\"><input type=\"checkbox\" value=\"".$s['id']."\" id=\"".$s['id']."\" name=\"student[]\" /><label for=\"".$s['id']."\"></label></div></td>";
+                //echo '<td><input type="checkbox" name="student[]" value="'.$s['id'].'"></td>';
+            }
+            if (in_array($s, $students)) {
+                echo '<td><input type="text" name="grade[]" value="'.$grades[$s['id']].'"></td>';
+                echo '<input type="hidden" name="studentId[]" value="'.$s['id'].'">';
+            } else {
+                echo '<td>Eleven går inte kursen</td>';
             }
             echo "</tr>";
         }
@@ -49,7 +50,7 @@ if (!isset($parent) && !isset($id) && !isset($students) && !isset($allStudents))
     </table>
     <table>
         <tr>
-            <td><input type="submit"></td>
-            <td><a href="../public/index.php">Till listan</a></td>
+            <td><input class="go" type="submit"></td>
+            <td><a class="regular regularBtn" href="index.php">Till listan</a></td>
         </tr></table>
 </form>

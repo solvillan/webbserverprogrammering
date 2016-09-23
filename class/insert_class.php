@@ -2,12 +2,14 @@
 if (!isset($db)) {
     echo "<script>location.href='../index.php'</script>";
 }
-if (isset($_GET['sid']) && $_GET['sid'] != "") {
-    $id = $db->number_format($_GET['sid']);
-} else if (isset($_POST['id']) && $_POST['id'] != "") {
-    $id = $db->number_format($_POST['id']);
-} else {
-    $id = 1;
+?>
+
+<?php
+$allStudents = [];
+$allStudentQuery = $db->selectOrdered("*", "student", "ename");
+
+while ($srow = $allStudentQuery->fetch_array()) {
+    $allStudents[] = $srow;
 }
 ?>
 
@@ -22,26 +24,29 @@ if (isset($_GET['sid']) && $_GET['sid'] != "") {
 <section id="wrapper">
     <h1>Lägg till förälder</h1>
     <?php
-        if (isset($_POST['name']) && isset($_POST['phone_nr']) && isset($_POST['address']) && isset($_POST['email']) && isset($_POST['sid'])) {
+        if (isset($_POST['name']) && isset($_POST['teacher']) && isset($_POST['student'])) {
             //$db->update("fname", "'".$db->escape_string($_POST['fname'])."'", "student", "id=".$db->number_format($_POST['id']));
-            $fname = $_POST['name'];
-            $phone_nr = $_POST['phone_nr'];
-            $address = $_POST['address'];
-            $email = $_POST['email'];
+            $name = $_POST['name'];
+            $teacher = $_POST['teacher'];
 
-            $sid = $_POST['sid'];
-            $pid = $db->select("MAX(`id`)", "parent")->fetch_array()['MAX(`id`)'] + 1;
+            $pid = $db->select("MAX(`id`)", "class")->fetch_array()['MAX(`id`)'] + 1;
 
-            $stmt = $db->createInsert("parent", ["name", "phone_nr", "address", "email"]);
-            $stmt->bind_param("ssss", $fname, $phone_nr, $address, $email);
+            $stmt = $db->createInsert("class", ["name", "teacher_name"]);
+            $stmt->bind_param("ss", $name, $teacher);
             $stmt->execute();
 
-            $stmt = $db->createInsert("student_parent", ["student_id", "parent_id"]);
-            $stmt->bind_param("ii", $sid, $pid);
-            $stmt->execute();
+            $student;
+            $tmp = "Ej satt";
+
+            $insert = $db->createInsert("student_class", ["class_id", "student_id", "grade"]);
+            $insert->bind_param("iis", $id, $student, $tmp);
+
+            foreach ($_POST['student'] as $student) {
+                $insert->execute();
+            }
 
             echo "<h3>Uppdaterad</h3><br>";
-            echo "<a href='../index.php'>Tillbaka</a>";
+            echo "<a class='regularBtn regular' href='index.php'>Tillbaka</a>";
     } else {
         include 'insert_class_form.php';
     }
