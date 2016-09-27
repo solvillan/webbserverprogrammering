@@ -1,6 +1,7 @@
 <?php
 if (!isset($db)) {
-    echo "<script>location.href='index.php'</script>";
+    header("Location: index.php");
+    die();
 }
 ?>
 
@@ -11,7 +12,8 @@ if (isset($_GET['pid']) && $_GET['pid'] != "") {
 } else if (isset($_POST['id']) && $_POST['id'] != "") {
     $id = $db->number_format($_POST['id']);
 } else {
-    echo "<script>location.href='index.php'</script>";
+    header("Location: index.php");
+    die();
 }
 $parent = $db->select("*", "parent", "id=".$id)->fetch_array();
 $sp = $db->select("*", "student_parent", "parent_id=".$id);

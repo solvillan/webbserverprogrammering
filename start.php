@@ -10,6 +10,16 @@
     <title>Nacka Gymnasium</title>
 </head>
 <body>
+
+<?php
+if (isset($_GET['error'])) {
+    echo "<div class='error'>";
+    echo "<h3>Ett fel har uppstått!</h3>";
+    echo "<p>".$_GET['error']."</p>";
+    echo "</div>";
+}
+?>
+
 <div class="wrapper horizontal">
     <h1 class="banner">Nacka Gymnasium</h1>
     <ul class="menu">

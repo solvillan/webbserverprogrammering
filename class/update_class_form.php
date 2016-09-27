@@ -1,6 +1,7 @@
 <?php
-if (!isset($class) && !isset($id) && !isset($students) && !isset($allStudents)) {
-    echo "<script>location.href='../index.php'</script>";
+if (!isset($class) || !isset($id) || !isset($students) || !isset($allStudents)) {
+    header("Location: index.php");
+    die();
 }
 ?>
 

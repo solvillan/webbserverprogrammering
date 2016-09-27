@@ -1,11 +1,12 @@
 <?php
-if (!isset($parent) && !isset($id) && !isset($students) && !isset($allStudents)) {
-    echo "<script>location.href='../index.php'</script>";
+if (!isset($parent) || !isset($id) || !isset($students) || !isset($allStudents)) {
+    header("Location: index.php");
+    die();
 }
 ?>
 
 
-<form action="../public/index.php?p=updateParent" method="post">
+<form action="index.php?p=updateParent" method="post">
     <input type="hidden" name="id" value="<?php echo $id ?>">
     <table class="form">
         <tr>

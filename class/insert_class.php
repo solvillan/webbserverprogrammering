@@ -1,6 +1,7 @@
 <?php
 if (!isset($db)) {
-    echo "<script>location.href='../index.php'</script>";
+    header("Location: index.php?error=".urlencode("insertClass: Ingen databas är satt."));
+    die();
 }
 ?>
 

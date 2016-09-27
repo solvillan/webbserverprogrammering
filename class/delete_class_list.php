@@ -1,6 +1,6 @@
 <?php
 if (!isset($students)) {
-    header("Location: index.php");
+    header("Location: index.php?error=".urlencode("delete_class_list: Ingen databas är satt."));
     die();
 }
 ?>

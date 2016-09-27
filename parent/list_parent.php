@@ -1,6 +1,7 @@
 <?php
 if (!isset($db)) {
-    echo "<script>location.href='index.php'</script>";
+    header("Location: index.php");
+    die();
 }
 ?>
 <!DOCTYPE html>
@@ -11,6 +12,9 @@ if (!isset($db)) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="backBtn">
+    <a href="index.php" class="">&nbsp;</a>
+</div>
 <section id="wrapper">
     <h1>Nacka gymnasium - Föräldrar</h1>
     <table>
@@ -39,7 +43,7 @@ if (!isset($db)) {
                 echo "</tr>";
             }
         } else { // There is no students.
-            echo "<tr><th>Det finns inga elever</th></tr>";
+            echo "<tr><th>Det finns inga föräldrar - gå till elever för att lägga till</th></tr>";
         }
 
         ?>

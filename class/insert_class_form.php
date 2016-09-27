@@ -1,6 +1,7 @@
 <?php
 if (!isset($allStudents)) {
-    echo "<script>location.href='../index.php'</script>";
+    header("Location: index.php?error=".urlencode("insertClass: allStudents är inte satt."));
+    die();
 }
 ?>
 

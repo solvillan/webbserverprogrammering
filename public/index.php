@@ -12,6 +12,11 @@ if (!isset($db)) {
     $db = new Database("localhost", "root", "", "school");
 }
 
+function redirect($page) {
+    header("Location: index.php?p=".$page);
+    die();
+}
+
 // Check if page is set
 if (isset($_GET['p'])) {
     $p = $_GET['p'];
@@ -42,6 +47,8 @@ if (isset($_GET['p'])) {
         include '../class/update_class.php';
     } else if ($p == 'insertClass') {
         include '../class/insert_class.php';
+    } else if ($p == 'deleteClass') {
+        include '../class/delete_class.php';
     } else { // Failsafe
         include '../start.php';
     }
