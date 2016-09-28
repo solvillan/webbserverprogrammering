@@ -1,6 +1,7 @@
 <?php
 if (!isset($db)) {
-    echo "<script>location.href='../index.php'</script>";
+    header("Location: index.php");
+    die();
 }
 if (isset($_GET['sid']) && $_GET['sid'] != "") {
     $id = $db->number_format($_GET['sid']);
@@ -41,7 +42,7 @@ if (isset($_GET['sid']) && $_GET['sid'] != "") {
             $stmt->execute();
 
             echo "<h3>Uppdaterad</h3><br>";
-            echo "<a class='regular regularBtn' href='index.php'>Tillbaka</a>";
+            echo "<a class='regular regularBtn' href='index.php?=listParent'>Tillbaka</a>";
     } else {
         include 'insert_parent_form.php';
     }

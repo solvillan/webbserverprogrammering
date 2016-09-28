@@ -1,6 +1,7 @@
 <?php
 if (!isset($db)) {
-    echo "<script>location.href='index.php?p=info'</script>";
+    header("Location: index.php");
+    die();
 }
 ?>
 <?php

@@ -1,6 +1,7 @@
 <?php
 if (!isset($db)) {
-    echo "<script>location.href='index.php'</script>";
+    header("Location: index.php");
+    die();
 }
 ?>
 
@@ -11,7 +12,8 @@ if (isset($_GET['pid']) && $_GET['pid'] != "") {
 } else if (isset($_POST['id']) && $_POST['id'] != "") {
     $id = $db->number_format($_POST['id']);
 } else {
-    echo "<script>location.href='index.php'</script>";
+    header("Location: index.php");
+    die();
 }
 $student = $db->select("*", "student", "id=".$id)->fetch_array();
 $sp = $db->select("*", "student_parent", "student_id=".$id);
@@ -42,7 +44,8 @@ while ($prow = $sp->fetch_array()) {
         <?php
         if (!isset($_POST['pid']) && !isset($_POST['confirm'])) {
             if (!isset($student['id'])) {
-                echo "<script>location.href='index.php'</script>";
+                header("Location: index.php");
+                die();
             }
             echo "<p>Vill du verkligen radera ".$student['fname']." ".$student['ename']."?<br>Detta går inte att ångra.</p>";
             echo "<form action='index.php?p=deleteStudent' method='post'><table>";

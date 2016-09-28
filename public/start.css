@@ -47,3 +47,16 @@
     border-bottom: 2px solid #eeeeee;
     transition: border-color 1s ease;
 }
+
+.error {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    background-color: #f78683;
+    border: 0.2em solid #8a4242;
+    border-radius: 5px;
+    z-index: 99;
+    padding: 5px;
+}
