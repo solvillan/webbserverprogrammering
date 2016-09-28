@@ -20,6 +20,9 @@ if (isset($_GET['sid']) && $_GET['sid'] != "") {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="backBtn">
+    <a href="index.php?p=listParent" class="">&nbsp;</a>
+</div>
 <section id="wrapper">
     <h1>Lägg till förälder</h1>
     <?php

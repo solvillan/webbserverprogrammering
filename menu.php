@@ -12,6 +12,9 @@ if (!isset($db)) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="backBtn">
+    <a href="index.php?p=listStudent" class="">&nbsp;</a>
+</div>
 <section id="wrapper">
     <h1>Välj åtgärd</h1>
     <form name="choices" action="index.php?p=info&sid=<?php // Insert the requested sid

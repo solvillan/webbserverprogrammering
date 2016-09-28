@@ -229,3 +229,28 @@ table.form {
 input[type=checkbox] {
     visibility: hidden;
 }
+
+.hover {
+    z-index: 100;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #333333;
+    border-top: 2px solid #656565;
+    box-shadow: 0px -2px 10px #000;
+    margin: 0px;
+    padding: 5px;
+}
+
+.list {
+    padding-bottom: 3em;
+}
+
+.p50 {
+    width: 50% !important;
+    margin: auto !important;
+}

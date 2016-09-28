@@ -44,6 +44,9 @@ while ($srow = $allStudentQuery->fetch_array()) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="backBtn">
+    <a href="index.php?p=listClass" class="">&nbsp;</a>
+</div>
 <section id="wrapper">
     <h1><?php echo $class['name']; ?></h1>
     <?php

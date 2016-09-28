@@ -44,6 +44,9 @@ while ($prow = $sp->fetch_array()) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="backBtn">
+    <a href="index.php?p=listStudent" class="">&nbsp;</a>
+</div>
 <section id="wrapper">
     <h1><?php echo $student['fname']." ".$student["ename"]; ?></h1>
     <?php

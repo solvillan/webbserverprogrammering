@@ -13,6 +13,9 @@ if (!isset($db)) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="backBtn">
+    <a href="index.php?p=listStudent" class="">&nbsp;</a>
+</div>
 <section id="wrapper">
     <h1>Lägg till student</h1>
     <?php

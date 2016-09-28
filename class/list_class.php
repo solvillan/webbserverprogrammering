@@ -17,8 +17,7 @@ if (!isset($db)) {
 </div>
 <section id="wrapper">
     <h1>Nacka gymnasium - Föräldrar</h1>
-    <a href="index.php?p=insertClass" class="go goBtn">Lägg till</a>
-    <table>
+    <table class="list">
         <?php
         // Get all students ordered by surname.
         $result = $db->selectOrdered("*", "class", "name");
@@ -52,5 +51,8 @@ if (!isset($db)) {
         ?>
     </table>
 </section>
+<div class="hover footer">
+    <a href="index.php?p=insertClass" class="go goBtn p50">Lägg till</a>
+</div>
 </body>
 </html>

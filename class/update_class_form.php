@@ -18,7 +18,7 @@ if (!isset($class) || !isset($id) || !isset($students) || !isset($allStudents)) 
             <td colspan="3"><input type="text" name="teacher" value="<?php echo $class['teacher_name']?>"></td>
         </tr>
     </table>
-    <table>
+    <table class="list">
         <tr>
             <th>Namn</th>
             <th>Address</th>
@@ -49,7 +49,7 @@ if (!isset($class) || !isset($id) || !isset($students) || !isset($allStudents)) 
         }
         ?>
     </table>
-    <table>
+    <table class="hover footer">
         <tr>
             <td><input class="go" type="submit"></td>
             <td><a class="regular regularBtn" href="index.php?p=listClass">Till listan</a></td>
