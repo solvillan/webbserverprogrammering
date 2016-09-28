@@ -37,10 +37,10 @@ while ($srow = $allStudentQuery->fetch_array()) {
             $stmt->execute();
 
             $student;
-            $tmp = "Ej satt";
+            $tmp = "-";
 
             $insert = $db->createInsert("student_class", ["class_id", "student_id", "grade"]);
-            $insert->bind_param("iis", $id, $student, $tmp);
+            $insert->bind_param("iis", $pid, $student, $tmp);
 
             foreach ($_POST['student'] as $student) {
                 $insert->execute();

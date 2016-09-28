@@ -36,8 +36,8 @@ if (!isset($allStudents)) {
     </table>
     <table>
         <tr>
-            <td><input type="submit"></td>
-            <td><a href="index.php">Till listan</a></td>
+            <td><input class="go goBtn" type="submit"></td>
+            <td><a class="regular regularBtn" href="index.php">Till listan</a></td>
         </tr>
     </table>
 </form>

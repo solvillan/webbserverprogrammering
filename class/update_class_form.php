@@ -52,6 +52,6 @@ if (!isset($class) || !isset($id) || !isset($students) || !isset($allStudents)) 
     <table>
         <tr>
             <td><input class="go" type="submit"></td>
-            <td><a class="regular regularBtn" href="index.php">Till listan</a></td>
+            <td><a class="regular regularBtn" href="index.php?p=listClass">Till listan</a></td>
         </tr></table>
 </form>

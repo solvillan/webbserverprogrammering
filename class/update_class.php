@@ -65,7 +65,7 @@ while ($srow = $allStudentQuery->fetch_array()) {
         }
         if (isset($_POST['student'])) {
             $student;
-            $tmp = "Ej satt";
+            $tmp = "-";
 
             $insert = $db->createInsert("student_class", ["class_id", "student_id", "grade"]);
             $insert->bind_param("iis", $id, $student, $tmp);
@@ -92,14 +92,13 @@ while ($srow = $allStudentQuery->fetch_array()) {
                 for ($i = 0; $i < count($_POST['grade']); $i++) {
                     $grade = $_POST['grade'][$i];
                     $studentId = $_POST['studentId'][$i];
-                    echo "Grade: ".$grade." Student: ".$studentId." I: ".$i." Count: ".count($_POST['grade']);
-                    echo " Result: ".$update->execute()."<br>";
+                    $update->execute();
                 }
 
             }
         }
         echo "<h3>Uppdaterad</h3><br>";
-        echo "<a href='index.php?p=updateClass&cid=".$_POST['id']."'>Tillbaka</a>";
+        echo "<a class='regular regularBtn' href='index.php?p=updateClass&cid=".$_POST['id']."'>Tillbaka</a>";
     } else {
         include 'update_class_form.php';
     }
