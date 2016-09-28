@@ -1,6 +1,6 @@
 <?php
 if (!isset($parent) || !isset($id) || !isset($students) || !isset($allStudents)) {
-    header("Location: index.php");
+    header("Location: index.php?error=".urlencode("updateParent: Variablerna är inte satta."));
     die();
 }
 ?>
@@ -11,19 +11,19 @@ if (!isset($parent) || !isset($id) || !isset($students) || !isset($allStudents))
     <table class="form">
         <tr>
             <td>Förnamn</td>
-            <td colspan="3"><input type="text" name="name" value="<?php echo $parent['name']?>"></td>
+            <td colspan="3"><input required type="text" name="name" value="<?php echo $parent['name']?>"></td>
         </tr>
         <tr>
             <td>Telefon</td>
-            <td colspan="3"><input type="text" name="phone_nr" value="<?php echo $parent['phone_nr']?>"></td>
+            <td colspan="3"><input required type="text" name="phone_nr" value="<?php echo $parent['phone_nr']?>"></td>
         </tr>
         <tr>
             <td>Adress</td>
-            <td colspan="3"><input type="text" name="address" value="<?php echo $parent['address']?>"></td>
+            <td colspan="3"><input required type="text" name="address" value="<?php echo $parent['address']?>"></td>
         </tr>
         <tr>
             <td>E-mail</td>
-            <td colspan="3"><input type="email" name="email" value="<?php echo $parent['email']?>"></td>
+            <td colspan="3"><input required type="email" name="email" value="<?php echo $parent['email']?>"></td>
         </tr>
     </table>
     <table class="list">

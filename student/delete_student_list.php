@@ -1,6 +1,6 @@
 <?php
 if (!isset($students)) {
-    header("Location: index.php");
+    header("Location: index.php?error=".urlencode("deleteStudent: students är inte satt."));
     die();
 }
 ?>

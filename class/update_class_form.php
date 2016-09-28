@@ -1,6 +1,6 @@
 <?php
 if (!isset($class) || !isset($id) || !isset($students) || !isset($allStudents)) {
-    header("Location: index.php");
+    header("Location: index.php?error=".urlencode("updateClass: Variablerna är inte satta."));
     die();
 }
 ?>
@@ -11,11 +11,11 @@ if (!isset($class) || !isset($id) || !isset($students) || !isset($allStudents)) 
     <table class="form">
         <tr>
             <td>Kursnamn</td>
-            <td colspan="3"><input type="text" name="name" value="<?php echo $class['name']?>"></td>
+            <td colspan="3"><input required type="text" name="name" value="<?php echo $class['name']?>"></td>
         </tr>
         <tr>
             <td>Lärare</td>
-            <td colspan="3"><input type="text" name="teacher" value="<?php echo $class['teacher_name']?>"></td>
+            <td colspan="3"><input required type="text" name="teacher" value="<?php echo $class['teacher_name']?>"></td>
         </tr>
     </table>
     <table class="list">
@@ -40,7 +40,7 @@ if (!isset($class) || !isset($id) || !isset($students) || !isset($allStudents)) 
                 //echo '<td><input type="checkbox" name="student[]" value="'.$s['id'].'"></td>';
             }
             if (in_array($s, $students)) {
-                echo '<td><input type="text" name="grade[]" value="'.$grades[$s['id']].'"></td>';
+                echo '<td><input required maxlength="1" type="text" name="grade[]" value="'.$grades[$s['id']].'"></td>';
                 echo '<input type="hidden" name="studentId[]" value="'.$s['id'].'">';
             } else {
                 echo '<td>Eleven går inte kursen</td>';

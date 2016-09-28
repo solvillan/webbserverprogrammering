@@ -1,13 +1,12 @@
 <?php
 if (!isset($db)) {
-    header("Location: index.php");
+    header("Location: index.php?error=".urlencode("listStudent: Ingen databas är satt."));
     die();
 }
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="public/style.css"/>
         <title>Nacka Gymnasium</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">

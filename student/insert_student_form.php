@@ -2,19 +2,19 @@
     <table class="form">
         <tr>
             <td>Förnamn</td>
-            <td><input type="text" name="fname" value=""></td>
+            <td><input required type="text" name="fname" value=""></td>
         </tr>
         <tr>
             <td>Efternamn</td>
-            <td><input type="text" name="ename" value=""></td>
+            <td><input required type="text" name="ename" value=""></td>
         </tr>
         <tr>
             <td>Adress</td>
-            <td><input type="text" name="address" value=""></td>
+            <td><input required type="text" name="address" value=""></td>
         </tr>
         <tr>
             <td>E-mail</td>
-            <td><input type="email" name="email" value=""></td>
+            <td><input required type="email" name="email" value=""></td>
         </tr>
         <tr>
             <td><input class="go" type="submit"></td>

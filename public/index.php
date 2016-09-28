@@ -12,11 +12,6 @@ if (!isset($db)) {
     $db = new Database("localhost", "root", "", "school");
 }
 
-function redirect($page) {
-    header("Location: index.php?p=".$page);
-    die();
-}
-
 // Check if page is set
 if (isset($_GET['p'])) {
     $p = $_GET['p'];

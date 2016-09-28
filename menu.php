@@ -52,8 +52,13 @@ if (!isset($db)) {
                 </td>
             </tr>
             <tr>
+                <td colspan="2">
+                    <a href="index.php?p=deleteStudent" class="delete deleteBtn"></a>
+                </td>
+            </tr>
+            <tr>
                 <td><input class="go" type="submit"></td>
-                <td ><a class="regular regularBtn" href="index.php?p=updateStudent&sid=<?php // Insert the requested sid
+                <td><a class="regular regularBtn" href="index.php?p=updateStudent&sid=<?php // Insert the requested sid
                     if (isset($_GET['sid'])) {
                         echo $db->number_format($_GET['sid']);
                     } else {

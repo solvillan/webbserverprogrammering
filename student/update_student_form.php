@@ -11,19 +11,19 @@ if (!isset($student) || !isset($id)) {
     <table class="form">
         <tr>
             <td>Förnamn</td>
-            <td><input type="text" name="fname" value="<?php echo $student['fname']?>"></td>
+            <td><input required type="text" name="fname" value="<?php echo $student['fname']?>"></td>
         </tr>
         <tr>
             <td>Efternamn</td>
-            <td><input type="text" name="ename" value="<?php echo $student['ename']?>"></td>
+            <td><input required type="text" name="ename" value="<?php echo $student['ename']?>"></td>
         </tr>
         <tr>
             <td>Adress</td>
-            <td><input type="text" name="address" value="<?php echo $student['address']?>"></td>
+            <td><input required type="text" name="address" value="<?php echo $student['address']?>"></td>
         </tr>
         <tr>
             <td>E-mail</td>
-            <td><input type="email" name="email" value="<?php echo $student['email']?>"></td>
+            <td><input required type="email" name="email" value="<?php echo $student['email']?>"></td>
         </tr>
         <tr>
             <td><input class="go" type="submit"></td>

@@ -1,6 +1,6 @@
 <?php
 if (!isset($students)) {
-    header("Location: index.php");
+    header("Location: index.php?error=".urlencode("updateParent: Students är inte satt."));
     die();
 }
 ?>

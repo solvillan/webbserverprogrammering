@@ -1,6 +1,6 @@
 <?php
 if (!isset($id)) {
-    header("Location: index.php");
+    header("Location: index.php?error=".urlencode("insertParent: Inget id är satt."));
     die();
 }
 ?>

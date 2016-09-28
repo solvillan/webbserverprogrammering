@@ -1,6 +1,6 @@
 <?php
 if (!isset($db)) {
-    header("Location: index.php");
+    header("Location: index.php?error=" . urlencode("deleteParent: Ingen databas är satt."));
     die();
 }
 ?>
@@ -12,7 +12,7 @@ if (isset($_GET['pid']) && $_GET['pid'] != "") {
 } else if (isset($_POST['id']) && $_POST['id'] != "") {
     $id = $db->number_format($_POST['id']);
 } else {
-    header("Location: index.php");
+    header("Location: index.php?error=".urlencode("deleteParent: Inget id är satt."));
     die();
 }
 $parent = $db->select("*", "parent", "id=".$id)->fetch_array();
@@ -47,13 +47,14 @@ while ($prow = $sp->fetch_array()) {
         <?php
         if (!isset($_POST['pid']) && !isset($_POST['confirm'])) {
             if (!isset($parent['id'])) {
-                echo "<script>location.href='index.php?p=listParent'</script>";
+                header("Location: index.php?error=".urlencode("deleteParent: Inget id är satt."));
+                die();
             }
             echo "<p>Vill du verkligen radera ".$parent['name']."?<br>Detta går inte att ångra.</p>";
             echo "<form action='index.php?p=deleteParent' method='post'><table>";
             echo "<tr>";
             echo "<input type='hidden' value='".$parent['id']."' name='id'>";
-            echo "<td><div class=\"slideThree\"><input type=\"checkbox\" value=\"None\" id=\"slideThree\" name=\"confirm\" /><label for=\"slideThree\"></label></div></td>";
+            echo "<td><div class=\"slideThree\"><input required type=\"checkbox\" value=\"None\" id=\"slideThree\" name=\"confirm\" /><label for=\"slideThree\"></label></div></td>";
             //echo "<td><input class='delete' type='checkbox' name='confirm'></td>";
             echo "<td><input class='delete' type='submit' value='Radera!'></td>";
             echo "</tr></table></form>";

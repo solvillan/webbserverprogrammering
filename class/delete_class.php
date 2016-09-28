@@ -54,7 +54,7 @@ while ($prow = $sc->fetch_array()) {
             echo "<form action='index.php?p=deleteClass' method='post'><table>";
             echo "<tr>";
             echo "<input type='hidden' value='".$class['id']."' name='id'>";
-            echo "<td><div class=\"slideThree\"><input type=\"checkbox\" value=\"None\" id=\"slideThree\" name=\"confirm\" /><label for=\"slideThree\"></label></div></td>";
+            echo "<td><div class=\"slideThree\"><input required type=\"checkbox\" value=\"None\" id=\"slideThree\" name=\"confirm\" /><label for=\"slideThree\"></label></div></td>";
             echo "<td><input class='delete' type='submit' value='Radera!'></td>";
             echo "</tr></table></form>";
             echo "<h3>".$class['name']." har elververna</h3>";

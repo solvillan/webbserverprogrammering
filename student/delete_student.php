@@ -1,18 +1,18 @@
 <?php
 if (!isset($db)) {
-    header("Location: index.php");
+    header("Location: index.php?error=".urlencode("deleteStudent: Ingen databas är satt."));
     die();
 }
 ?>
 
 <?php
 // Init vars
-if (isset($_GET['pid']) && $_GET['pid'] != "") {
-    $id = $db->number_format($_GET['pid']);
+if (isset($_GET['sid']) && $_GET['sid'] != "") {
+    $id = $db->number_format($_GET['sid']);
 } else if (isset($_POST['id']) && $_POST['id'] != "") {
     $id = $db->number_format($_POST['id']);
 } else {
-    header("Location: index.php");
+    header("Location: index.php?error=".urlencode("deleteStudent: Inget id är satt."));
     die();
 }
 $student = $db->select("*", "student", "id=".$id)->fetch_array();
@@ -47,14 +47,14 @@ while ($prow = $sp->fetch_array()) {
         <?php
         if (!isset($_POST['pid']) && !isset($_POST['confirm'])) {
             if (!isset($student['id'])) {
-                header("Location: index.php");
+                header("Location: index.php?error=".urlencode("deleteStudent: Inget id är satt."));
                 die();
             }
             echo "<p>Vill du verkligen radera ".$student['fname']." ".$student['ename']."?<br>Detta går inte att ångra.</p>";
             echo "<form action='index.php?p=deleteStudent' method='post'><table>";
             echo "<tr>";
             echo "<input type='hidden' value='".$student['id']."' name='id'>";
-            echo "<td><input type='checkbox' name='confirm'> Ja, radera ".$student['fname']." ".$student['ename']."</td>";
+            echo "<td><div class=\"slideThree\"><input required type=\"checkbox\" value=\"None\" id=\"slideThree\" name=\"confirm\" /><label for=\"slideThree\"></label></div></td>";
             echo "<td><input class='delete' type='submit' value='Radera!'></td>";
             echo "</tr></table></form>";
             echo "<h3>".$student['fname']." ".$student['ename']." är barn till</h3>";

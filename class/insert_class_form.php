@@ -9,11 +9,11 @@ if (!isset($allStudents)) {
     <table class="form">
         <tr>
             <td>Kursnamn</td>
-            <td><input type="text" name="name" value=""></td>
+            <td><input required type="text" name="name" value=""></td>
         </tr>
         <tr>
             <td>Lärare</td>
-            <td><input type="text" name="teacher" value=""></td>
+            <td><input required type="text" name="teacher" value=""></td>
         </tr>
     </table>
     <table>

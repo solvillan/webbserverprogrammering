@@ -1,6 +1,6 @@
 <?php
 if (!isset($db)) {
-    header("Location: index.php");
+    header("Location: index.php?error=".urlencode("updateClass: Ingen databas är satt."));
     die();
 }
 ?>
